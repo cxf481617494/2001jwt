@@ -268,4 +268,14 @@ class LoginController extends Controller
 
 
 
+
+
+    // vue接口测试调用
+    public function vue_g_list(){
+        $goods = Goods::limit(10)->get();
+        return json_encode(["code"=>"000","msg"=>"success","data"=>$goods]);
+    }
+
+
+
 }

@@ -41,5 +41,9 @@ Route::get('/', function () {
 		Route::get("/cart",'Admin\LoginController@cart');
 		Route::get("/carts",'Admin\LoginController@carts');
 	});
+	// vue接口测试
+	Route::prefix("/apiv")->group(function(){
+		Route::get("api/vue_g_list","Admin\LoginController@vue_g_list")
+	})
 
 
