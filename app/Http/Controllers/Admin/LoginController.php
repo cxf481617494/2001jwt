@@ -166,7 +166,7 @@ class LoginController extends Controller
                 ];
         Login::insert($data); 
         }
-            echo  json_encode(["code"=>0000,"msg"=>"登录成功","token"=>$token]);
+            echo  json_encode(["code"=>0000,"msg"=>"登录成功","token"=>$token,"openid"=>$openid]);
     }
     public function actionWxLogin(){
         $user = request()->userInfo;
