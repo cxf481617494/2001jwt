@@ -44,6 +44,6 @@ Route::get('/', function () {
 	// vue接口测试
 	Route::prefix("/apiv")->group(function(){
 		Route::get("api/vue_g_list","Admin\LoginController@vue_g_list");
-	})
+	});
 
 
