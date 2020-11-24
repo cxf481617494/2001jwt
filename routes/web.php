@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+	echo "123";
     // return view('welcome');
 });
 //登录路由分组管理 prefix 前缀  group 分组
