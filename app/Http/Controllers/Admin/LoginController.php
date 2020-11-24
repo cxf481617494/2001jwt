@@ -258,26 +258,9 @@ class LoginController extends Controller
         }
          $cart_list = Cart::where("uid",$uid)->get();
         echo $cart_list;
-        
-       
-        // 
-        //     
-
-        //      $goods_id = request()->goods_id;
-        //     $uid= 1;
-        //     $where = [
-        //        [ "goods_id",$goods_id],
-        //         ["uid" ,$uid],
-        //         ];
-        //     $goods_num = request()->goods_num;
-        //      Cart::where($where)->update(["goods_num"=>$goods_num]);
-        
-        //
-       
     }
     public function carts(){
         $goods =request()->all();
-
         Cart::where("goods_id",$goods["goods_id"])->update(["goods_num"=>$goods["goods_num"]]);
 
     }
