@@ -234,7 +234,8 @@ class LoginController extends Controller
     //购物车
     public function cart(){
         $goods = request()->all();
-        $uid = 1;
+        $openid = request()->goods_openid;
+        $uid = Login::where("openid",$openid)->value("user_id");
         $where = [
                 ["goods_id",$goods["goods_id"]],
                 ["uid",$uid],
@@ -247,7 +248,7 @@ class LoginController extends Controller
             $cart = Goods::where("goods_id",$goods_id)->first();
             $data = [
                 "goods_id" => $goods_id,
-                "uid" => 1,
+                "uid" => $uid,
                 "goods_num" =>$goods["goods_num"],
                 "add_time" => time(),
                 "goods_name" =>$cart->goods_name,
