@@ -270,15 +270,18 @@ class LoginController extends Controller
     //收藏
     public function coll(){
         $uid = $_SERVER["uid"];
-        $token = request()->token;
+        echo $uid;
         $goods_id = request()->goods_id;
+        echo $goods_id;
         $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
         //goods_id
         $cc = substr($key,9,7);
         $goods_ids = rtrim($cc,"_");
+        echo $goods_ids;
          //uid
         $ccs = substr($key,30,20);
         $uids = ltrim($ccs,"_");
+        dd($uids);
         if($goods_id==$goods_ids && $uid==$uids ){
             return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
         }
