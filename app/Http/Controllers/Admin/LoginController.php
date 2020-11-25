@@ -274,7 +274,9 @@ class LoginController extends Controller
         // echo $uid;
         $goods_id = request()->goods_id;
         // echo $goods_id;
-        // $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        $key = "xcx_coll_".$goods_id."________".$uid;
+        $dif  = Redis::zcard($key);
+        dd($dif);
         //goods_id
         // $cc = substr($key,9,7);
         // $goods_ids = rtrim($cc,"_");
