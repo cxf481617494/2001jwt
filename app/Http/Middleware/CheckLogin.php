@@ -19,7 +19,6 @@ class CheckLogin
         $key = "h:xcx:token";
         //取出哈希中的值
         $data = Redis::hgetAll($key);
-        $data["user_id"] = 123;
         $_SERVER["uid"] = $data["user_id"];
         return $next($request);
     }

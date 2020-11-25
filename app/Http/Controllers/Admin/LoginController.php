@@ -281,7 +281,6 @@ class LoginController extends Controller
             if($uid){
                 $key = "xcx_coll_".$goods_id."_".time()."_".$uid;
                 Redis::ZAdd($key,$goods);
-                dd($key);
             }
            
          }
