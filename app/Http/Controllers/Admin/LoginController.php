@@ -265,7 +265,11 @@ class LoginController extends Controller
         Cart::where("goods_id",$goods["goods_id"])->update(["goods_num"=>$goods["goods_num"]]);
 
     }
-
+    //收藏
+    public function coll(){
+        $goods_id = request()->goods_id;
+        dd($goods_id);
+    }
 
 
 

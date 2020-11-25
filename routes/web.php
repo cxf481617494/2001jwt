@@ -40,6 +40,7 @@ Route::get('/', function () {
 		Route::get("/detail",'Admin\LoginController@detail');
 		Route::get("/cart",'Admin\LoginController@cart');
 		Route::get("/carts",'Admin\LoginController@carts');
+		Route::get("/coll",'Admin\LoginController@coll');
 	});
 	// vue接口测试
 	Route::prefix("/apiv")->group(function(){
