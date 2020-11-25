@@ -41,6 +41,7 @@ Route::get('/', function () {
 		Route::get("/cart",'Admin\LoginController@cart')->middleware("checkLogin");
 		Route::get("/carts",'Admin\LoginController@carts');
 		Route::get("/coll",'Admin\LoginController@coll')->middleware("checkLogin");
+		Route::get("/ee",'Admin\LoginController@ee');
 	});
 	// vue接口测试
 	Route::prefix("/apiv")->group(function(){

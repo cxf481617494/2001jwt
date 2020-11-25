@@ -234,6 +234,9 @@ class LoginController extends Controller
     //购物车
     public function cart(){
         $goods = request()->all();
+        // if(){
+
+        // }
         $uid = $_SERVER["uid"];
         $where = [
                 ["goods_id",$goods["goods_id"]],
@@ -266,10 +269,25 @@ class LoginController extends Controller
     }
     //收藏
     public function coll(){
-        $goods_id = request()->goods_id;
-        // $goods_id= 217;
         $uid = $_SERVER["uid"];
         $token = request()->token;
+        $goods_id = request()->goods_id;
+        $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        //goods_id
+        $cc = substr($key,9,7);
+        $goods_ids = rtrim($cc,"_");
+         //uid
+        $ccs = substr($key,30,20);
+        $uids = ltrim($ccs,"_");
+        if($goods_id==$goods_ids && $uid==$uids ){
+            return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
+        }
+        // $keys = Redis::Zrange($key,0,-1);
+        // $das = json_decode($keys,true);
+        // $goods_id = $das["goods_id"]; 
+
+        
+    
          //取哈希的token
          $xcx_token =  Redis::hget("h:xcx:token","access_token");
          if($token!=$xcx_token){
@@ -278,7 +296,7 @@ class LoginController extends Controller
             $goods= Goods::where("goods_id",$goods_id)->get();
             $goods = json_encode($goods);
             if($uid){
-                $key = "xcx_coll_".$goods_id."_".time()."_".$uid;
+                $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
                 Redis::ZAdd($key,$goods);
             }
             return json_encode(["code"=>"00000","msg"=>"收藏成功"]);
@@ -295,7 +313,25 @@ class LoginController extends Controller
         $goods = Goods::limit(10)->get();
         return json_encode(["code"=>"000","msg"=>"success","data"=>$goods]);
     }
-
+    public function ee(){
+        $goods_id = 217;
+        $uid = 123;
+        $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        //goods_id
+        $cc = substr($key,9,7);
+        $cc = rtrim($cc,"_");
+        //uid
+        $cc = substr($key,30,20);
+        $cc = ltrim($cc,"_");
+        $keys = Redis::Zrange($key,0,-1);
+        dd($cc);
+        // $das = json_decode($keys,true);
+        // $goods_id = $das["goods_id"]; 
+        // dd($goods_id);
+        //  $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        // 
+        // dd($cc);
+    }
 
 
 }
