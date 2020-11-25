@@ -276,24 +276,10 @@ class LoginController extends Controller
         // echo $goods_id;
         $key = "xcx_coll_".$goods_id."________".$uid;
         $dif  = Redis::zcard($key);
-        dd($dif);
-        //goods_id
-        // $cc = substr($key,9,7);
-        // $goods_ids = rtrim($cc,"_");
-        // echo $goods_ids;
-         //uid
-        // $ccs = substr($key,30,20);
-        // $uids = ltrim($ccs,"_");
-        // dd($uids);
-        // if($goods_id==$goods_ids && $uid==$uids ){
-        //     return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
-        // }
-        // $keys = Redis::Zrange($key,0,-1);
-        // $das = json_decode($keys,true);
-        // $goods_id = $das["goods_id"]; 
-
-        
-    
+        if($dif==1){
+            return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
+        }else{
+            
          //取哈希的token
          $xcx_token =  Redis::hget("h:xcx:token","access_token");
          if($token!=$xcx_token){
@@ -308,6 +294,24 @@ class LoginController extends Controller
             return json_encode(["code"=>"00000","msg"=>"收藏成功"]);
            
          }
+        }
+        //goods_id
+        // $cc = substr($key,9,7);
+        // $goods_ids = rtrim($cc,"_");
+        // echo $goods_ids;
+         //uid
+        // $ccs = substr($key,30,20);
+        // $uids = ltrim($ccs,"_");
+        // dd($uids);
+        // if($goods_id==$goods_ids && $uid==$uids ){
+        //     
+        // }
+        // $keys = Redis::Zrange($key,0,-1);
+        // $das = json_decode($keys,true);
+        // $goods_id = $das["goods_id"]; 
+
+        
+    
 
     }
 
