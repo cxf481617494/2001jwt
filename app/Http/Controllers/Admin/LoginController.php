@@ -241,7 +241,7 @@ class LoginController extends Controller
             ];
          $cart = Cart::where($where)->first();
         if($cart){
-            Cart::where($where)->update(["goods_num"=>$goods["goods_num"]+$cart["goods_num"]]);
+            Cart::where($where)->update(["goods_num"=>$goods["goods_num"]]);
         }else{
             $goods_id = $goods["goods_id"];
             $cart = Goods::where("goods_id",$goods_id)->first();
