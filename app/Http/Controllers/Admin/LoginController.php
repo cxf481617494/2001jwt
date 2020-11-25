@@ -282,6 +282,7 @@ class LoginController extends Controller
                 $key = "xcx_coll_".$goods_id."_".time()."_".$uid;
                 Redis::ZAdd($key,$goods);
             }
+            return json_encode(["code"=>"00000","msg"=>"收藏成功"]);
            
          }
 
