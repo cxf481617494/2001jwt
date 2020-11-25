@@ -268,7 +268,24 @@ class LoginController extends Controller
     //收藏
     public function coll(){
         $goods_id = request()->goods_id;
-        dd($goods_id);
+        // $goods_id= 217;
+        $uid = $_SERVER["uid"];
+        $token = request()->token;
+         //取哈希的token
+         $xcx_token =  Redis::hget("h:xcx:token","access_token");
+         if($token!=$xcx_token){
+            return json_encode(["msg"=>"请重新登录","code"=>"1111"]);
+         }else{
+            $goods= Goods::where("goods_id",$goods_id)->get();
+            $goods = json_encode($goods);
+            if($uid){
+                $key = "xcx_coll_".$goods_id."_".time()."_".$uid;
+                Redis::ZAdd($key,$goods);
+                dd($key);
+            }
+           
+         }
+
     }
 
 

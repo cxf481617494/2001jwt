@@ -38,9 +38,9 @@ Route::get('/', function () {
 		Route::get("/actionWxLogin",'Admin\LoginController@actionWxLogin');
 		Route::get("/goods",'Admin\LoginController@goods');
 		Route::get("/detail",'Admin\LoginController@detail');
-		Route::get("/cart",'Admin\LoginController@cart');
+		Route::get("/cart",'Admin\LoginController@cart')->middleware("checkLogin");
 		Route::get("/carts",'Admin\LoginController@carts');
-		Route::get("/coll",'Admin\LoginController@coll');
+		Route::get("/coll",'Admin\LoginController@coll')->middleware("checkLogin");;
 	});
 	// vue接口测试
 	Route::prefix("/apiv")->group(function(){
