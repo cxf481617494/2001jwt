@@ -270,21 +270,22 @@ class LoginController extends Controller
     //收藏
     public function coll(){
         $uid = $_SERVER["uid"];
-        echo $uid;
+        $token = request()->token;
+        // echo $uid;
         $goods_id = request()->goods_id;
-        echo $goods_id;
-        $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        // echo $goods_id;
+        // $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
         //goods_id
-        $cc = substr($key,9,7);
-        $goods_ids = rtrim($cc,"_");
-        echo $goods_ids;
+        // $cc = substr($key,9,7);
+        // $goods_ids = rtrim($cc,"_");
+        // echo $goods_ids;
          //uid
-        $ccs = substr($key,30,20);
-        $uids = ltrim($ccs,"_");
-        dd($uids);
-        if($goods_id==$goods_ids && $uid==$uids ){
-            return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
-        }
+        // $ccs = substr($key,30,20);
+        // $uids = ltrim($ccs,"_");
+        // dd($uids);
+        // if($goods_id==$goods_ids && $uid==$uids ){
+        //     return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
+        // }
         // $keys = Redis::Zrange($key,0,-1);
         // $das = json_decode($keys,true);
         // $goods_id = $das["goods_id"]; 
@@ -299,7 +300,7 @@ class LoginController extends Controller
             $goods= Goods::where("goods_id",$goods_id)->get();
             $goods = json_encode($goods);
             if($uid){
-                $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+                $key = "xcx_coll_".$goods_id."________".$uid;
                 Redis::ZAdd($key,$goods);
             }
             return json_encode(["code"=>"00000","msg"=>"收藏成功"]);
@@ -319,12 +320,13 @@ class LoginController extends Controller
     public function ee(){
         $goods_id = 217;
         $uid = 123;
-        $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
+        $key = "xcx_coll_".$goods_id."________".$uid;
         //goods_id
         $cc = substr($key,9,7);
         $cc = rtrim($cc,"_");
+        echo $cc;
         //uid
-        $cc = substr($key,30,20);
+        $cc = substr($key,12,40);
         $cc = ltrim($cc,"_");
         $keys = Redis::Zrange($key,0,-1);
         dd($cc);
