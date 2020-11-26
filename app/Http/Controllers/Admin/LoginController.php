@@ -262,6 +262,7 @@ class LoginController extends Controller
          $cart_list = Cart::where("uid",$uid)->get();
         return  $cart_list;
     }
+    //加减号
     public function carts(){
         $goods =request()->all();
         Cart::where("goods_id",$goods["goods_id"])->update(["goods_num"=>$goods["goods_num"]]);
@@ -279,7 +280,6 @@ class LoginController extends Controller
         if($dif==1){
             return json_encode(["code"=>"0000","msg"=>"该商品已经收藏"]);
         }else{
-            
          //取哈希的token
          $xcx_token =  Redis::hget("h:xcx:token","access_token");
          if($token!=$xcx_token){
@@ -292,31 +292,9 @@ class LoginController extends Controller
                 Redis::ZAdd($key,$goods);
             }
             return json_encode(["code"=>"00000","msg"=>"收藏成功"]);
-           
          }
-        }
-        //goods_id
-        // $cc = substr($key,9,7);
-        // $goods_ids = rtrim($cc,"_");
-        // echo $goods_ids;
-         //uid
-        // $ccs = substr($key,30,20);
-        // $uids = ltrim($ccs,"_");
-        // dd($uids);
-        // if($goods_id==$goods_ids && $uid==$uids ){
-        //     
-        // }
-        // $keys = Redis::Zrange($key,0,-1);
-        // $das = json_decode($keys,true);
-        // $goods_id = $das["goods_id"]; 
-
-        
-    
-
+      }
     }
-
-
-
 
     // vue接口测试调用
     public function vue_g_list(){
@@ -324,24 +302,11 @@ class LoginController extends Controller
         return json_encode(["code"=>"000","msg"=>"success","data"=>$goods]);
     }
     public function ee(){
-        $goods_id = 217;
-        $uid = 123;
-        $key = "xcx_coll_".$goods_id."________".$uid;
-        //goods_id
-        $cc = substr($key,9,7);
-        $cc = rtrim($cc,"_");
-        echo $cc;
-        //uid
-        $cc = substr($key,12,40);
-        $cc = ltrim($cc,"_");
-        $keys = Redis::Zrange($key,0,-1);
-        dd($cc);
-        // $das = json_decode($keys,true);
-        // $goods_id = $das["goods_id"]; 
-        // dd($goods_id);
-        //  $key = "xcx_coll_".$goods_id."________".time()."_".$uid;
-        // 
-        // dd($cc);
+        return view("admin/text");
+    }
+    //订单
+    public function order(){
+        
     }
 
 
