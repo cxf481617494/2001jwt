@@ -307,7 +307,9 @@ class LoginController extends Controller
     //订单
     public function order(){
         $goods_id = request()->goods_id;
-        echo $goods_id;
+        $goods_id = substr($goods,0,10);
+        dd($goods_id);
+        
     }
 
 
