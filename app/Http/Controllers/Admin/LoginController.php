@@ -302,25 +302,32 @@ class LoginController extends Controller
         return json_encode(["code"=>"000","msg"=>"success","data"=>$goods]);
     }
     public function ee(){
-         // $goods_id = request()->goods_id;
-         $goods_id = "217,218,220";
+        //  // $goods_id = request()->goods_id;
+        //  $goods_id = "217,218,220";
+        //  // $goods_id = request()->goods_id;
+        //  // $uid = $_SERVER["uid"];
+        //  $uid = 123;
+        //  $goods_id = explode(",",$goods_id);
+        // // $goods_id = substr($goods_id,0,strpos($goods_id,","));
+        // //  $order = [];
+        // // foreach ($goods_id as $key => $value) {
+        // //     $where = [
+        // //         ["goods_id","=",$value],
+        // //         ["uid","=",$uid]
+        // //         ];
+        // // }
+        // $order = Cart::whereIn("goods_id",$goods_id)->get();
+        // dd($order);
+        // return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
 
     }
     //订单
     public function order(){
-        $goods_id = request()->goods_id;
-         $uid = $_SERVER["uid"];
-         $goods_id = explode(",",$goods_id);
-        // $goods_id = substr($goods_id,0,strpos($goods_id,","));
-         $order = [];
-        foreach ($goods_id as $key => $value) {
-            $where = [
-                ["goods_id","=",$value],
-                ["uid","=",$uid]
-                ];
-        }
-        $order[] = Cart::where($where)->get();
-        return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
+            $goods_id = request()->goods_id;
+            $uid = $_SERVER["uid"];
+            $goods_id = explode(",",$goods_id);
+            $order = Cart::whereIn("goods_id",$goods_id)->get();
+          return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
         
     }
 
