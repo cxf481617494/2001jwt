@@ -318,9 +318,8 @@ class LoginController extends Controller
                 ["goods_id","=",$value],
                 ["uid","=",$uid]
                 ];
-            $order[] = Cart::where($where)->get();
-            
         }
+        $order[] = Cart::where($where)->get();
         return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
         
     }
