@@ -309,12 +309,14 @@ class LoginController extends Controller
     //订单
     public function order(){
         $goods_id = request()->goods_id;
+         $uid = $_SERVER["uid"];
          $goods_id = explode(",",$goods_id);
         // $goods_id = substr($goods_id,0,strpos($goods_id,","));
          $order = [];
         foreach ($goods_id as $key => $value) {
             $where = [
-                ["goods_id","=",$value]
+                ["goods_id","=",$value],
+                ["uid","=",$uid]
                 ];
             $order[] = Cart::where($where)->get();
             
