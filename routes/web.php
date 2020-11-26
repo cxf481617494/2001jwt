@@ -34,15 +34,15 @@ Route::get('/', function () {
 	//小程序接口测试
 	Route::prefix("/api")->group(function(){
 		Route::get("/userinfo",'Admin\LoginController@userinfo');
-		Route::get("/login",'Admin\LoginController@login')->middleware("checkLogin");;
-		Route::get("/actionWxLogin",'Admin\LoginController@actionWxLogin')->middleware("checkLogin");;
-		Route::get("/goods",'Admin\LoginController@goods')->middleware("checkLogin");;
-		Route::get("/detail",'Admin\LoginController@detail')->middleware("checkLogin");->middleware("checkLogin");;
+		Route::get("/login",'Admin\LoginController@login')->middleware("checkLogin");
+		Route::get("/actionWxLogin",'Admin\LoginController@actionWxLogin')->middleware("checkLogin");
+		Route::get("/goods",'Admin\LoginController@goods')->middleware("checkLogin");
+		Route::get("/detail",'Admin\LoginController@detail')->middleware("checkLogin")->middleware("checkLogin");
 		Route::get("/cart",'Admin\LoginController@cart')->middleware("checkLogin");
 		Route::get("/carts",'Admin\LoginController@carts');
 		Route::get("/coll",'Admin\LoginController@coll')->middleware("checkLogin");
 		Route::get("/ee",'Admin\LoginController@ee');
-		Route::get("/order",'Admin\LoginController@order')->middleware("checkLogin");;
+		Route::get("/order",'Admin\LoginController@order')->middleware("checkLogin");
 	});
 	// vue接口测试
 	Route::prefix("/apiv")->group(function(){
