@@ -321,14 +321,7 @@ class LoginController extends Controller
             $order[] = Cart::where($where)->get();
             
         }
-        $repose = [
-            "errmsg" => "ok",
-            "code"  =>"9999",
-            "data" =>$order
-             
-            ];
-            return $repose;
-        // echo  json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
+        return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
         
     }
 
