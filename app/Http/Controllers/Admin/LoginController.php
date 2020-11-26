@@ -302,13 +302,24 @@ class LoginController extends Controller
         return json_encode(["code"=>"000","msg"=>"success","data"=>$goods]);
     }
     public function ee(){
-        return view("admin/text");
+         // $goods_id = request()->goods_id;
+         $goods_id = "217,218,220";
+
     }
     //订单
     public function order(){
         $goods_id = request()->goods_id;
-        $goods_id = substr($goods,0,10);
-        dd($goods_id);
+         $goods_id = explode(",",$goods_id);
+        // $goods_id = substr($goods_id,0,strpos($goods_id,","));
+         $order = [];
+        foreach ($goods_id as $key => $value) {
+            $where = [
+                ["goods_id","=",$value]
+                ];
+            $order[] = Cart::where($where)->get();
+            
+        }
+        return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
         
     }
 
