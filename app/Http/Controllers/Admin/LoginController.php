@@ -324,9 +324,8 @@ class LoginController extends Controller
         $repose = [
             "errmsg" => "ok",
             "code"  =>"9999",
-            "data" =>[
-                "data"=>$order
-                ]
+            "data" =>$order
+             
             ];
             return $repose;
         // echo  json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
