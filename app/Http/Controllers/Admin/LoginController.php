@@ -259,7 +259,11 @@ class LoginController extends Controller
             ];
             Cart::insert($data);
         }
-         $cart_list = Cart::where("uid",$uid)->get();
+        $where = [
+          "uid"=>$uid,
+          "is_delete"=>0
+          ];
+         $cart_list = Cart::where($where)->get();
         return  $cart_list;
     }
     //加减号
