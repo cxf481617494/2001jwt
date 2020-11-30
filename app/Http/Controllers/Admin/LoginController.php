@@ -328,7 +328,17 @@ class LoginController extends Controller
             $goods_id = explode(",",$goods_id);
             $order = Cart::whereIn("goods_id",$goods_id)->get();
           return json_encode(["code"=>"9999","msg"=>"success","data"=>$order]);
-        
+    }
+    //总数
+    public function zongshu(){
+      $uid = $_SERVER["uid"];  
+      // $uid = 123;
+      $where = [
+        "is_delete",=>0,
+        "uid"=>$uid
+        ];
+      $count = Cart::where($where)->get();
+      return json_encode(["code"=>"111111","msg"=>"success","data"=>$count]);
     }
 
 
