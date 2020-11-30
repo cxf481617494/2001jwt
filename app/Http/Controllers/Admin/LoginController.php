@@ -342,9 +342,10 @@ class LoginController extends Controller
     }
     // 删除
     public function dels(){
-      $uid = $_SERVER["uid"];
+      // $uid = $_SERVER["uid"];
       $goods_id = request()->goods_id;
-      $de = Cart::whereIn("goods_id",$goods_id)->update(["is_delete",1]);
+      $goods_id = explode(",",$goods_id)
+      $de = Cart::whereIn("goods_id",$goods_id)->update(["is_delete"=>1]);
      return  json_encode(["code"=>"4455","msg"=>"删除成功"]);
     }
 
