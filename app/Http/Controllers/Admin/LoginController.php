@@ -337,7 +337,7 @@ class LoginController extends Controller
         "is_delete"=>0,
         "uid"=>$uid
         ];
-      $count = Cart::where($where)->get();
+      $count = Cart::where($where)->count();
       return json_encode(["code"=>"111111","msg"=>"success","data"=>$count]);
     }
 
