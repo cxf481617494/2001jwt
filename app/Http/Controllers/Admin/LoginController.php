@@ -334,7 +334,7 @@ class LoginController extends Controller
       $uid = $_SERVER["uid"];  
       // $uid = 123;
       $where = [
-        "is_delete",=>0,
+        "is_delete"=>0,
         "uid"=>$uid
         ];
       $count = Cart::where($where)->get();
